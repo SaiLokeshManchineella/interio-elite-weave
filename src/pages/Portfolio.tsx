@@ -17,73 +17,73 @@ const Portfolio = () => {
       id: 1,
       title: 'Luxury Villa - Rushikonda',
       category: 'Residential',
-      image: 'https://images.unsplash.com/photo-1721322800607-8c38375eef04?w=800&h=600&fit=crop',
-      description: 'Modern luxury living with coastal charm and premium finishes',
+      image: 'https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?w=800&h=600&fit=crop&q=80',
+      description: 'Opulent coastal estate featuring Italian marble, custom millwork, and panoramic ocean vistas',
       area: '4,500 sq ft',
       duration: '6 months',
       budget: '₹45-60L',
       year: '2024',
-      tags: ['Luxury', 'Villa', 'Modern', 'Coastal']
+      tags: ['Luxury', 'Villa', 'Coastal', 'Italian Marble']
     },
     {
       id: 2,
-      title: 'Corporate Office - IT Hub',
+      title: 'Executive Penthouse - IT Hub',
       category: 'Commercial',
-      image: 'https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=800&h=600&fit=crop',
-      description: 'Contemporary workspace design promoting productivity and collaboration',
+      image: 'https://images.unsplash.com/photo-1497366216548-37526070297c?w=800&h=600&fit=crop&q=80',
+      description: 'Sophisticated C-suite office with bespoke furniture, smart automation, and premium finishes',
       area: '12,000 sq ft',
       duration: '4 months',
       budget: '₹80-100L',
       year: '2024',
-      tags: ['Office', 'Corporate', 'Modern', 'Tech']
+      tags: ['Executive', 'Smart Office', 'Premium', 'Automation']
     },
     {
       id: 3,
-      title: 'Boutique Restaurant - Beach Road',
+      title: 'Fine Dining Restaurant - Beach Road',
       category: 'Hospitality',
-      image: 'https://images.unsplash.com/photo-1488590528505-98d2b5aba04b?w=800&h=600&fit=crop',
-      description: 'Elegant dining experience with coastal-inspired interiors',
+      image: 'https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=800&h=600&fit=crop&q=80',
+      description: 'Michelin-starred ambiance with artisanal lighting, imported fabrics, and coastal elegance',
       area: '2,800 sq ft',
       duration: '3 months',
       budget: '₹25-35L',
       year: '2023',
-      tags: ['Restaurant', 'Coastal', 'Elegant', 'Dining']
+      tags: ['Fine Dining', 'Artisanal', 'Coastal', 'Premium']
     },
     {
       id: 4,
-      title: 'Penthouse Apartment - Siripuram',
+      title: 'Heritage Mansion - Siripuram',
       category: 'Residential',
-      image: 'https://images.unsplash.com/photo-1649972904349-6e44c42644a7?w=800&h=600&fit=crop',
-      description: 'Ultra-modern penthouse with panoramic city views',
+      image: 'https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?w=800&h=600&fit=crop&q=80',
+      description: 'Restored colonial mansion blending heritage architecture with contemporary luxury amenities',
       area: '3,200 sq ft',
       duration: '5 months',
       budget: '₹50-70L',
       year: '2023',
-      tags: ['Penthouse', 'Modern', 'Luxury', 'Views']
+      tags: ['Heritage', 'Colonial', 'Restoration', 'Luxury']
     },
     {
       id: 5,
-      title: 'Medical Clinic - Dwaraka Nagar',
+      title: 'Wellness Spa - Dwaraka Nagar',
       category: 'Healthcare',
-      image: 'https://images.unsplash.com/photo-1472396961693-142e6e269027?w=800&h=600&fit=crop',
-      description: 'Healing-focused design with calming aesthetics',
+      image: 'https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=800&h=600&fit=crop&q=80',
+      description: 'Tranquil healing sanctuary with natural materials, water features, and biophilic design',
       area: '1,800 sq ft',
       duration: '2 months',
       budget: '₹15-25L',
       year: '2023',
-      tags: ['Medical', 'Healing', 'Calm', 'Professional']
+      tags: ['Wellness', 'Spa', 'Natural', 'Biophilic']
     },
     {
       id: 6,
-      title: 'Luxury Retail Store - Jagadamba',
+      title: 'Luxury Boutique - Jagadamba',
       category: 'Retail',
-      image: 'https://images.unsplash.com/photo-1721322800607-8c38375eef04?w=800&h=600&fit=crop',
-      description: 'High-end retail space with premium brand positioning',
+      image: 'https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=800&h=600&fit=crop&q=80',
+      description: 'High-fashion retail space with custom displays, LED integration, and premium materials',
       area: '2,200 sq ft',
       duration: '3 months',
       budget: '₹30-40L',
       year: '2024',
-      tags: ['Retail', 'Luxury', 'Brand', 'Shopping']
+      tags: ['Fashion', 'Boutique', 'LED', 'Custom Displays']
     }
   ];
 
@@ -96,47 +96,58 @@ const Portfolio = () => {
   });
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-gradient-to-b from-slate-50 to-white">
       {/* Hero Section */}
-      <section className="bg-gradient-to-br from-slate-900 via-blue-900 to-purple-900 text-white py-20">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h1 className="text-4xl lg:text-5xl font-bold mb-4">
-            Our Portfolio
+      <section className="relative py-32 overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-br from-slate-900 via-blue-900 to-purple-900"></div>
+        <div className="absolute inset-0">
+          <img
+            src="https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?w=1920&h=1080&fit=crop&q=80"
+            alt="Luxury Portfolio Background"
+            className="w-full h-full object-cover opacity-20"
+          />
+        </div>
+        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-white">
+          <h1 className="text-5xl lg:text-7xl font-light mb-6 tracking-tight">
+            SIGNATURE
+            <span className="block bg-gradient-to-r from-amber-200 to-yellow-200 bg-clip-text text-transparent">
+              PORTFOLIO
+            </span>
           </h1>
-          <p className="text-xl opacity-90 max-w-3xl mx-auto">
-            Explore our collection of award-winning interior design projects across 
-            residential, commercial, and hospitality spaces in Vishakhapatnam and beyond.
+          <p className="text-xl lg:text-2xl opacity-90 max-w-4xl mx-auto font-light leading-relaxed">
+            A curated collection of our most distinguished luxury interior projects, 
+            each a testament to exceptional craftsmanship and visionary design.
           </p>
         </div>
       </section>
 
       {/* Filter Section */}
-      <section className="py-12 bg-white border-b">
+      <section className="py-16 bg-white border-b border-gray-100">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex flex-col lg:flex-row gap-6 items-center justify-between">
+          <div className="flex flex-col lg:flex-row gap-8 items-center justify-between">
             {/* Search */}
             <div className="relative flex-1 max-w-md">
-              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
+              <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
               <Input
                 type="text"
-                placeholder="Search projects..."
+                placeholder="Search luxury projects..."
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
-                className="pl-10"
+                className="pl-12 py-4 text-lg rounded-full border-2 border-gray-200 focus:border-amber-500 font-light"
               />
             </div>
 
             {/* Category Filters */}
-            <div className="flex flex-wrap gap-2">
+            <div className="flex flex-wrap gap-3">
               {categories.map((category) => (
                 <Button
                   key={category}
                   variant={selectedCategory === category ? "default" : "outline"}
-                  size="sm"
+                  size="lg"
                   onClick={() => setSelectedCategory(category)}
                   className={selectedCategory === category ? 
-                    "bg-blue-600 hover:bg-blue-700" : 
-                    "hover:bg-gray-50"
+                    "bg-gradient-to-r from-amber-600 to-yellow-600 hover:from-amber-700 hover:to-yellow-700 text-black font-semibold px-8 py-3 rounded-full" : 
+                    "hover:bg-gray-50 px-8 py-3 rounded-full font-light border-2 border-gray-200 hover:border-amber-500"
                   }
                 >
                   {category}
@@ -145,61 +156,61 @@ const Portfolio = () => {
             </div>
           </div>
 
-          <div className="mt-4 text-center text-gray-600">
-            Showing {filteredProjects.length} of {projects.length} projects
+          <div className="mt-6 text-center text-gray-600 font-light text-lg">
+            Showcasing {filteredProjects.length} of {projects.length} exceptional projects
           </div>
         </div>
       </section>
 
       {/* Projects Grid */}
-      <section className="py-16">
+      <section className="py-24">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-12">
             {filteredProjects.map((project) => (
-              <Card key={project.id} className="group cursor-pointer overflow-hidden border-0 shadow-lg hover:shadow-xl transition-all duration-300">
+              <Card key={project.id} className="group cursor-pointer overflow-hidden border-0 shadow-2xl hover:shadow-3xl transition-all duration-500 bg-white rounded-3xl">
                 <div className="aspect-[4/3] overflow-hidden relative">
                   <img
                     src={project.image}
                     alt={project.title}
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
                   />
                   <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors duration-300 flex items-center justify-center">
                     <Button
-                      size="sm"
-                      className="opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-white text-gray-900 hover:bg-gray-100"
+                      size="lg"
+                      className="opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-white text-gray-900 hover:bg-gray-100 rounded-full px-8 py-4 font-semibold shadow-xl transform scale-95 group-hover:scale-100"
                     >
-                      <ExternalLink className="w-4 h-4 mr-2" />
-                      View Details
+                      <ExternalLink className="w-5 h-5 mr-2" />
+                      VIEW PROJECT
                     </Button>
                   </div>
-                  <Badge className="absolute top-4 left-4 bg-blue-600">
+                  <Badge className="absolute top-6 left-6 bg-amber-600 text-black px-4 py-2 text-sm font-semibold rounded-full">
                     {project.category}
                   </Badge>
                 </div>
-                <CardContent className="p-6">
-                  <h3 className="text-xl font-semibold text-gray-900 mb-2 group-hover:text-blue-600 transition-colors">
+                <CardContent className="p-8">
+                  <h3 className="text-2xl font-light text-gray-900 mb-4 group-hover:text-amber-600 transition-colors duration-300 tracking-wide">
                     {project.title}
                   </h3>
-                  <p className="text-gray-600 mb-4 line-clamp-2">{project.description}</p>
+                  <p className="text-gray-600 mb-6 line-clamp-2 font-light leading-relaxed">{project.description}</p>
                   
-                  <div className="grid grid-cols-2 gap-4 text-sm text-gray-500 mb-4">
+                  <div className="grid grid-cols-2 gap-4 text-sm text-gray-500 mb-6 font-light">
                     <div>
-                      <span className="font-medium">Area:</span> {project.area}
+                      <span className="font-medium text-gray-700">Area:</span> {project.area}
                     </div>
                     <div>
-                      <span className="font-medium">Duration:</span> {project.duration}
+                      <span className="font-medium text-gray-700">Duration:</span> {project.duration}
                     </div>
                     <div>
-                      <span className="font-medium">Budget:</span> {project.budget}
+                      <span className="font-medium text-gray-700">Investment:</span> {project.budget}
                     </div>
                     <div>
-                      <span className="font-medium">Year:</span> {project.year}
+                      <span className="font-medium text-gray-700">Year:</span> {project.year}
                     </div>
                   </div>
 
                   <div className="flex flex-wrap gap-2">
                     {project.tags.map((tag, index) => (
-                      <Badge key={index} variant="secondary" className="text-xs">
+                      <Badge key={index} variant="secondary" className="text-xs bg-amber-50 text-amber-700 px-3 py-1 rounded-full font-medium">
                         {tag}
                       </Badge>
                     ))}
@@ -210,17 +221,17 @@ const Portfolio = () => {
           </div>
 
           {filteredProjects.length === 0 && (
-            <div className="text-center py-16">
-              <p className="text-gray-500 text-lg">No projects found matching your criteria.</p>
+            <div className="text-center py-24">
+              <p className="text-gray-500 text-xl font-light mb-6">No projects found matching your refined criteria.</p>
               <Button
                 variant="outline"
                 onClick={() => {
                   setSelectedCategory('All');
                   setSearchTerm('');
                 }}
-                className="mt-4"
+                className="px-8 py-4 text-lg rounded-full border-2 border-gray-300 hover:border-amber-500 font-light"
               >
-                Clear Filters
+                RESET FILTERS
               </Button>
             </div>
           )}
@@ -228,16 +239,18 @@ const Portfolio = () => {
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 bg-blue-600 text-white">
+      <section className="py-24 bg-gradient-to-br from-amber-600 via-yellow-600 to-amber-600 text-black">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-3xl lg:text-4xl font-bold mb-4">
-            Ready to Start Your Project?
+          <h2 className="text-4xl lg:text-5xl font-light mb-6 tracking-tight">
+            ENVISION YOUR
+            <span className="block font-normal">LUXURY PROJECT</span>
           </h2>
-          <p className="text-xl mb-8 opacity-90 max-w-2xl mx-auto">
-            Let's discuss how we can transform your space with our award-winning design expertise.
+          <p className="text-xl mb-12 opacity-90 max-w-3xl mx-auto font-light leading-relaxed">
+            Ready to create your own masterpiece? Let our design virtuosos transform 
+            your space into an extraordinary testament to luxury and sophistication.
           </p>
-          <Button size="lg" variant="secondary" className="px-8 py-6 text-lg">
-            Book a Consultation
+          <Button size="lg" variant="secondary" className="px-12 py-6 text-xl bg-white text-gray-900 hover:bg-gray-100 rounded-full font-semibold shadow-2xl transform hover:scale-105 transition-all duration-300">
+            BEGIN YOUR JOURNEY
           </Button>
         </div>
       </section>
