@@ -1,8 +1,8 @@
 
-import PRDDocument from '@/components/PRDDocument';
+import Home from './Home';
 
 const Index = () => {
-  return <PRDDocument />;
+  return <Home />;
 };
 
 export default Index;
