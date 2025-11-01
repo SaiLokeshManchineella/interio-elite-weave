@@ -1,99 +1,66 @@
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Card, CardContent } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
-import { Search, Filter, ExternalLink } from 'lucide-react';
+import { Search, Filter, ExternalLink, Loader2 } from 'lucide-react';
+import { supabase } from '@/integrations/supabase/client';
+import { toast } from 'sonner';
+
+interface PortfolioImage {
+  id: string;
+  title: string;
+  description: string | null;
+  category: string;
+  image_url: string;
+  storage_path: string;
+  display_order: number;
+}
 
 const Portfolio = () => {
   const [selectedCategory, setSelectedCategory] = useState('All');
   const [searchTerm, setSearchTerm] = useState('');
+  const [projects, setProjects] = useState<PortfolioImage[]>([]);
+  const [loading, setLoading] = useState(true);
 
-  const categories = ['All', 'Residential', 'Commercial', 'Hospitality', 'Healthcare', 'Retail'];
+  const categories = ['All', 'Residential', 'Commercial', 'Hospitality', 'Retail'];
 
-  const projects = [
-    {
-      id: 1,
-      title: 'Luxury Villa - Rushikonda',
-      category: 'Residential',
-      image: 'https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?w=800&h=600&fit=crop&q=80',
-      description: 'Opulent coastal estate featuring Italian marble, custom millwork, and panoramic ocean vistas',
-      area: '4,500 sq ft',
-      duration: '6 months',
-      budget: '₹45-60L',
-      year: '2024',
-      tags: ['Luxury', 'Villa', 'Coastal', 'Italian Marble']
-    },
-    {
-      id: 2,
-      title: 'Executive Penthouse - IT Hub',
-      category: 'Commercial',
-      image: 'https://images.unsplash.com/photo-1497366216548-37526070297c?w=800&h=600&fit=crop&q=80',
-      description: 'Sophisticated C-suite office with bespoke furniture, smart automation, and premium finishes',
-      area: '12,000 sq ft',
-      duration: '4 months',
-      budget: '₹80-100L',
-      year: '2024',
-      tags: ['Executive', 'Smart Office', 'Premium', 'Automation']
-    },
-    {
-      id: 3,
-      title: 'Fine Dining Restaurant - Beach Road',
-      category: 'Hospitality',
-      image: 'https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=800&h=600&fit=crop&q=80',
-      description: 'Michelin-starred ambiance with artisanal lighting, imported fabrics, and coastal elegance',
-      area: '2,800 sq ft',
-      duration: '3 months',
-      budget: '₹25-35L',
-      year: '2023',
-      tags: ['Fine Dining', 'Artisanal', 'Coastal', 'Premium']
-    },
-    {
-      id: 4,
-      title: 'Heritage Mansion - Siripuram',
-      category: 'Residential',
-      image: 'https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?w=800&h=600&fit=crop&q=80',
-      description: 'Restored colonial mansion blending heritage architecture with contemporary luxury amenities',
-      area: '3,200 sq ft',
-      duration: '5 months',
-      budget: '₹50-70L',
-      year: '2023',
-      tags: ['Heritage', 'Colonial', 'Restoration', 'Luxury']
-    },
-    {
-      id: 5,
-      title: 'Wellness Spa - Dwaraka Nagar',
-      category: 'Healthcare',
-      image: 'https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=800&h=600&fit=crop&q=80',
-      description: 'Tranquil healing sanctuary with natural materials, water features, and biophilic design',
-      area: '1,800 sq ft',
-      duration: '2 months',
-      budget: '₹15-25L',
-      year: '2023',
-      tags: ['Wellness', 'Spa', 'Natural', 'Biophilic']
-    },
-    {
-      id: 6,
-      title: 'Luxury Boutique - Jagadamba',
-      category: 'Retail',
-      image: 'https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=800&h=600&fit=crop&q=80',
-      description: 'High-fashion retail space with custom displays, LED integration, and premium materials',
-      area: '2,200 sq ft',
-      duration: '3 months',
-      budget: '₹30-40L',
-      year: '2024',
-      tags: ['Fashion', 'Boutique', 'LED', 'Custom Displays']
+  useEffect(() => {
+    fetchProjects();
+  }, []);
+
+  const fetchProjects = async () => {
+    try {
+      const { data, error } = await supabase
+        .from('portfolio_images')
+        .select('*')
+        .order('display_order', { ascending: true });
+
+      if (error) throw error;
+      setProjects(data || []);
+    } catch (error: any) {
+      toast.error('Failed to load portfolio images');
+      console.error(error);
+    } finally {
+      setLoading(false);
     }
-  ];
+  };
 
   const filteredProjects = projects.filter(project => {
-    const matchesCategory = selectedCategory === 'All' || project.category === selectedCategory;
+    const matchesCategory = selectedCategory === 'All' || project.category.toLowerCase() === selectedCategory.toLowerCase();
     const matchesSearch = project.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                         project.description.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                         project.tags.some(tag => tag.toLowerCase().includes(searchTerm.toLowerCase()));
+                         (project.description?.toLowerCase() || '').includes(searchTerm.toLowerCase());
     return matchesCategory && matchesSearch;
   });
+
+  if (loading) {
+    return (
+      <div className="min-h-screen flex items-center justify-center">
+        <Loader2 className="h-12 w-12 animate-spin text-amber-600" />
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-slate-50 to-white">
@@ -170,20 +137,11 @@ const Portfolio = () => {
               <Card key={project.id} className="group cursor-pointer overflow-hidden border-0 shadow-2xl hover:shadow-3xl transition-all duration-500 bg-white rounded-3xl">
                 <div className="aspect-[4/3] overflow-hidden relative">
                   <img
-                    src={project.image}
+                    src={project.image_url}
                     alt={project.title}
                     className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
                   />
-                  <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors duration-300 flex items-center justify-center">
-                    <Button
-                      size="lg"
-                      className="opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-white text-gray-900 hover:bg-gray-100 rounded-full px-8 py-4 font-semibold shadow-xl transform scale-95 group-hover:scale-100"
-                    >
-                      <ExternalLink className="w-5 h-5 mr-2" />
-                      VIEW PROJECT
-                    </Button>
-                  </div>
-                  <Badge className="absolute top-6 left-6 bg-amber-600 text-black px-4 py-2 text-sm font-semibold rounded-full">
+                  <Badge className="absolute top-6 left-6 bg-amber-600 text-black px-4 py-2 text-sm font-semibold rounded-full capitalize">
                     {project.category}
                   </Badge>
                 </div>
@@ -191,30 +149,9 @@ const Portfolio = () => {
                   <h3 className="text-2xl font-light text-gray-900 mb-4 group-hover:text-amber-600 transition-colors duration-300 tracking-wide">
                     {project.title}
                   </h3>
-                  <p className="text-gray-600 mb-6 line-clamp-2 font-light leading-relaxed">{project.description}</p>
-                  
-                  <div className="grid grid-cols-2 gap-4 text-sm text-gray-500 mb-6 font-light">
-                    <div>
-                      <span className="font-medium text-gray-700">Area:</span> {project.area}
-                    </div>
-                    <div>
-                      <span className="font-medium text-gray-700">Duration:</span> {project.duration}
-                    </div>
-                    <div>
-                      <span className="font-medium text-gray-700">Investment:</span> {project.budget}
-                    </div>
-                    <div>
-                      <span className="font-medium text-gray-700">Year:</span> {project.year}
-                    </div>
-                  </div>
-
-                  <div className="flex flex-wrap gap-2">
-                    {project.tags.map((tag, index) => (
-                      <Badge key={index} variant="secondary" className="text-xs bg-amber-50 text-amber-700 px-3 py-1 rounded-full font-medium">
-                        {tag}
-                      </Badge>
-                    ))}
-                  </div>
+                  {project.description && (
+                    <p className="text-gray-600 mb-6 line-clamp-3 font-light leading-relaxed">{project.description}</p>
+                  )}
                 </CardContent>
               </Card>
             ))}

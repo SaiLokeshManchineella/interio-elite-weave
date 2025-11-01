@@ -49,13 +49,13 @@ const Contact = () => {
     {
       icon: Phone,
       title: 'Call Us',
-      details: ['+91 891 234 5678', '+91 891 234 5679'],
+      details: ['+91 8908843333', '+91 7382312692'],
       action: 'Call Now'
     },
     {
       icon: Mail,
       title: 'Email Us',
-      details: ['info@mvlinterio.com', 'projects@mvlinterio.com'],
+      details: ['contact@mvlinterio.com', 'vikram@mvlinterio.com'],
       action: 'Send Email'
     },
     {
